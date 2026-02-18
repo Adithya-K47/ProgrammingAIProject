@@ -23,6 +23,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
+			ParrotState.Current = "Preen";
 			elapsedTime = 0f;
 			preenTimer.value = 0f;
 

@@ -34,6 +34,7 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
+			ParrotState.Current = disableNavAgent ? "PerchIdle" : "Idle";
 			idleDuration = Random.Range(minIdleDuration, maxIdleDuration);
 			elapsedTime = 0f;
 
@@ -72,8 +73,7 @@ namespace NodeCanvas.Tasks.Actions {
 				animator.value.SetBool(idleParameter, false);
 			}
 
-			// Re-enable NavMeshAgent when leaving perch
-			if (disableNavAgent && navAgent != null) navAgent.enabled = true;
+			// NavMeshAgent is re-enabled by HopDownAT when the parrot lands back on the ground
 
 			// Reset capsule rotation when leaving idle
 			if (capsuleTransform != null && capsuleTransform.value != null) {

@@ -32,7 +32,7 @@ namespace NodeCanvas.Tasks.Actions {
 				EndAction(false);
 				return;
 			}
-
+			ParrotState.Current = "PerchHop";
 			// Disable NavMeshAgent so it doesn't fight transform movement
 			if (navAgent != null) navAgent.enabled = false;
 
