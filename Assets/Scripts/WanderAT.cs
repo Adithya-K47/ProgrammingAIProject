@@ -59,6 +59,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
+			if (!navAgent.enabled || !navAgent.isOnNavMesh) return;
+
 			if (navAgent.remainingDistance < 0.25f &&
 				!navAgent.pathPending)
 			{

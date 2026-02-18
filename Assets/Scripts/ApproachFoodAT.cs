@@ -24,6 +24,10 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
+			if (!navAgent.enabled || !navAgent.isOnNavMesh) {
+				EndAction(false);
+				return;
+			}
 			if (foodTarget == null || foodTarget.value == null) {
 				EndAction(false);
 				return;
@@ -33,6 +37,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
+			if (!navAgent.enabled || !navAgent.isOnNavMesh) return;
+
 			if (foodTarget == null || foodTarget.value == null) {
 				EndAction(false);
 				return;
